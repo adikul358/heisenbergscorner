@@ -11,13 +11,13 @@
 .btn-primary {
   background-color: $primary;
   &:hover {
-    background-color: darken($primary, 10%);
+    background-color: lighten($primary, 10%);
   }
   &:focus {
-    background-color: darken($primary, 10%);
+    background-color: lighten($primary, 10%);
     color: white;
   }
   &:active {
-    background-color: darken($primary, 15%) !important;
+    background-color: lighten($primary, 15%) !important;
   }
 }
