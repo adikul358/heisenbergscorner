@@ -14,10 +14,10 @@
     background-color: lighten($primary, 10%);
   }
   &:focus {
-    background-color: lighten($primary, 10%);
+    background-color: $primary-light;
     color: white;
   }
   &:active {
-    background-color: lighten($primary, 15%) !important;
+    background-color: lighten($primary-light, 10%) !important;
   }
 }
