@@ -1,23 +1,14 @@
 {
   "name": "heisenbergs-corner",
-  "version": "2.0.0",
-  "description": "STEAM quiz website for Shiv Nadar School Noida",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/adikul358/heisenbergs-corner.git"
-  },
-  "author": "Aditya Kulshrestha",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/adikul358/heisenbergs-corner/issues"
-  },
-  "homepage": "https://github.com/adikul358/heisenbergs-corner#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "mongoose": "^5.6.7"
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1"
   }
 }
