@@ -1,7 +1,8 @@
 .projects-section {
-  padding: 10rem 0;
+  padding: 5rem 0;
   .featured-text {
     padding: 2rem;
+    color: white;
     @media (min-width: 992px) {
       padding: 0 0 0 2rem;
       border-left: 0.5rem solid $primary;
@@ -10,13 +11,28 @@
   .project-text {
     padding: 3rem;
     font-size: 90%;
+    color: fade-out(#fff, 0.4);
     @media (min-width: 992px) {
-      padding: 5rem;
+      padding: 4rem;
       hr {
         border-color: $primary;
         border-width: .25rem;
         width: 30%;
       }
+    }
+  }
+  .question-card {
+    background: $black;
+    background: linear-gradient(100deg, rgba(22,22,22,1) 0%, rgba(22,22,22,1) 72%, rgba(46,25,158,0.66) 100%);
+    input {
+      background: $input-gray;
+      color: #cecece;
+      border-radius: 0;
+    }
+    input:focus {
+      border-color: $primary;
+      outline: 0;
+      box-shadow: 0 0 0 .2rem fade-out($color: $primary-light, $amount: .5);
     }
   }
 }

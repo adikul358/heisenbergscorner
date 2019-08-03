@@ -41,13 +41,16 @@
             <a class="nav-link js-scroll-trigger" href="#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#projects">Chandrayan II</a>
+            <a class="nav-link js-scroll-trigger" href="#theme">Chandrayan II</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#signup">Results</a>
+            <a class="nav-link js-scroll-trigger" href="#dailyquiz">Today's Questions</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#signup">Contact</a>
+            <a class="nav-link js-scroll-trigger" href="/results">Results</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
           </li>
         </ul>
       </div>
@@ -78,60 +81,71 @@
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" class="projects-section bg-light">
+  <section class="projects-section bg-black" style="padding-bottom: 2rem">
     <div class="container">
-      <h1 class="text-center mb-5 strong display-5">Quiz Theme</h1>
-
+      
       <!-- Featured Project Row -->
-      <div class="row align-items-center no-gutters mb-4 mb-lg-5">
+      <div id="theme" class="row align-items-center no-gutters mb-4 mb-lg-5">
         <div class="col-xl-8 col-lg-7">
-          <img class="img-fluid mb-3 mb-lg-0" src="img/bg-masthead.jpg" alt="">
+          <img class="img-fluid mb-3 mb-lg-0" src="img/bg-theme.jpg" alt="">
         </div>
         <div class="col-xl-4 col-lg-5">
           <div class="featured-text text-center text-lg-left">
-            <h4>Shoreline</h4>
-            <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use it for any project - even commercial projects! Download it, customize it, and publish your website!</p>
+            <h4>Chandrayan II</h4>
+            <p class="text-white-50 mb-0">Chandrayaan 2 is an Indian lunar mission that will boldly go where no country has ever gone before — the Moon's south polar region. Through this effort, the aim is to improve our understanding of the Moon — discoveries that will benefit India and humanity as a whole. These insights and experiences aim at a paradigm shift in how lunar expeditions are approached for years to come — propelling further voyages into the farthest frontiers.</p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Project One Row -->
+  <section id="dailyquiz" class="projects-section bg-black" style="padding-top: 2rem">
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <hr style="border-color: white; width:8rem; border-width:.3rem; margin:0">
+      </div>
+      <div class="text-center">
+        <h1 class="text-white mt-4 mb-5">Daily Quiz</h1>
+      </div>
+
+      <form action="/submit-answer" method="POST">
       <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-        <div class="col-lg-6">
-          <img class="img-fluid" src="img/demo-image-01.jpg" alt="">
-        </div>
-        <div class="col-lg-6">
-          <div class="bg-black text-center h-100 project">
+
+        <div class="col-lg-12 mb-5">
+          <div class="question-card text-center h-100 project">
             <div class="d-flex h-100">
               <div class="project-text w-100 my-auto text-center text-lg-left">
-                <h4 class="text-white">Misty</h4>
-                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or anything else, along with a description.</p>
-                <hr class="d-none d-lg-block mb-0 ml-0">
+                <h4 class="text-white">Question 1</h4>
+                <p class="mb-0 text-white-50">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi in debitis enim aliquam esse a sunt</p>
+                <hr class="d-none d-lg-block mb-5 ml-0">
+                <div class="form-inline d-flex">
+                  <input type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="answerOne" name="answerOne" placeholder="Your Answer">
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Project Two Row -->
-      <div class="row justify-content-center no-gutters">
-        <div class="col-lg-6">
-          <img class="img-fluid" src="img/demo-image-02.jpg" alt="">
-        </div>
-        <div class="col-lg-6 order-lg-first">
-          <div class="bg-black text-center h-100 project">
+      
+        <div class="col-lg-12">
+          <div class="question-card text-center h-100 project">
             <div class="d-flex h-100">
-              <div class="project-text w-100 my-auto text-center text-lg-right">
-                <h4 class="text-white">Mountains</h4>
-                <p class="mb-0 text-white-50">Another example of a project with its respective description. These sections work well responsively as well, try this theme on a small screen!</p>
-                <hr class="d-none d-lg-block mb-0 mr-0">
+              <div class="project-text w-100 my-auto text-center text-lg-left">
+                <h4 class="text-white">Question 2</h4>
+                <p class="mb-0 text-white-50">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi in debitis enim aliquam esse a sunt</p>
+                <hr class="d-none d-lg-block mb-5 ml-0">
+                <div class="form-inline d-flex">
+                  <input type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="answerTwo" name="answerTwo" placeholder="Your Answer">
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
+        <div class="container">
+          <button type="submit" class="float-right mt-5 btn btn-primary">Submit</button>
+        </div>
+      </div>
+      </form>
     </div>
   </section>
 
@@ -158,25 +172,13 @@
   <section class="contact-section bg-black">
     <div class="container">
 
-      <div class="row">
-
+      <div class="row justify-content-center">
+        
         <div class="col-md-4 mb-3 mb-md-0">
-          <div class="card py-4 h-100">
+          <div class="card py-2 h-100">
             <div class="card-body text-center">
-              <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-              <h4 class="text-uppercase m-0">Address</h4>
-              <hr class="my-4">
-              <div class="small text-black-50">4923 Market Street, Orlando FL</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4 mb-3 mb-md-0">
-          <div class="card py-4 h-100">
-            <div class="card-body text-center">
-              <i class="fas fa-envelope text-primary mb-2"></i>
               <h4 class="text-uppercase m-0">Email</h4>
-              <hr class="my-4">
+              <hr class="my-3">
               <div class="small text-black-50">
                 <a href="#">hello@yourdomain.com</a>
               </div>
@@ -185,36 +187,22 @@
         </div>
 
         <div class="col-md-4 mb-3 mb-md-0">
-          <div class="card py-4 h-100">
+          <div class="card py-2 h-100">
             <div class="card-body text-center">
-              <i class="fas fa-mobile-alt text-primary mb-2"></i>
               <h4 class="text-uppercase m-0">Phone</h4>
-              <hr class="my-4">
-              <div class="small text-black-50">+1 (555) 902-8832</div>
+              <hr class="my-3">
+              <div class="small text-black-50">+91 99999 99999</div>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="social d-flex justify-content-center">
-        <a href="#" class="mx-2">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#" class="mx-2">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#" class="mx-2">
-          <i class="fab fa-github"></i>
-        </a>
-      </div>
-
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="bg-black small text-center text-white-50">
     <div class="container">
-      Copyright &copy; Your Website 2019
+      Copyright &copy; Heisenberg's Corner 2019 <br> Developed by <a href="https://github.com/adikul358">Aditya Kulshrestha</a>
     </div>
   </footer>
 
