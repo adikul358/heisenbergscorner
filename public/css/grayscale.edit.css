@@ -132,13 +132,16 @@
     padding: 3rem;
     font-size: 90%;
     color: rgba(255, 255, 255, 0.6); }
+    .projects-section .project-text hr {
+      border-color: #2e199e;
+      border-width: .25rem;
+      width: 30%; }
     @media (min-width: 992px) {
       .projects-section .project-text {
-        padding: 4rem; }
-        .projects-section .project-text hr {
-          border-color: #2e199e;
-          border-width: .25rem;
-          width: 30%; } }
+        padding: 4rem; } }
+    @media (max-width: 768px) {
+      .projects-section .project-text {
+        padding: 3rem 1.5rem; } }
   .projects-section .question-card {
     background: #161616;
     background: linear-gradient(100deg, #161616 0%, #161616 72%, rgba(46, 25, 158, 0.66) 100%); }
@@ -150,6 +153,10 @@
       border-color: #2e199e;
       outline: 0;
       box-shadow: 0 0 0 0.2rem rgba(88, 71, 177, 0.5); }
+  @media (max-width: 768px) {
+    .projects-section .container {
+      padding-left: 0;
+      padding-right: 0; } }
 
 .signup-section {
   padding: 3rem 0;

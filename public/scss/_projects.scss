@@ -12,13 +12,16 @@
     padding: 3rem;
     font-size: 90%;
     color: fade-out(#fff, 0.4);
+    hr {
+      border-color: $primary;
+      border-width: .25rem;
+      width: 30%;
+    }
     @media (min-width: 992px) {
       padding: 4rem;
-      hr {
-        border-color: $primary;
-        border-width: .25rem;
-        width: 30%;
-      }
+    }
+    @media (max-width: 768px) {
+      padding: 3rem 1.5rem;
     }
   }
   .question-card {
@@ -33,6 +36,12 @@
       border-color: $primary;
       outline: 0;
       box-shadow: 0 0 0 .2rem fade-out($color: $primary-light, $amount: .5);
+    }
+  }
+  @media (max-width: 768px) {
+    .container {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 }
