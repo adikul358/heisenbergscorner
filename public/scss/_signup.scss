@@ -7,14 +7,21 @@
   background-size: cover;
   .form-inline {
     input {
-      box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0,0,0,.1) !important;
+      // box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0,0,0,.1) !important;
       padding: 1rem 1.5rem;
       height: auto;
       font-family: 'Varela Round';
       font-size: 80%;
       text-transform: uppercase;
       letter-spacing: 0.15rem;
-      border: 0;
+      background: $input-gray;
+      color: #cecece;
+      border-radius: 0;
+    }
+    input:focus {
+      border-color: $primary;
+      outline: 0;
+      box-shadow: 0 0 0 .2rem fade-out($color: $primary-light, $amount: .5);
     }
   }
 }

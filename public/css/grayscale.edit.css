@@ -166,20 +166,26 @@
   background-attachment: scroll;
   background-size: cover; }
   .signup-section .form-inline input {
-    box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
     padding: 1rem 1.5rem;
     height: auto;
     font-family: 'Varela Round';
     font-size: 80%;
     text-transform: uppercase;
     letter-spacing: 0.15rem;
-    border: 0; }
+    background: #3c3c3c;
+    color: #cecece;
+    border-radius: 0; }
+  .signup-section .form-inline input:focus {
+    border-color: #2e199e;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(88, 71, 177, 0.5); }
 
 .contact-section {
   padding: 5rem 0 0; }
   .contact-section .card {
     border: 0;
-    border-bottom: 0.25rem solid #2e199e; }
+    border-bottom: 0.25rem solid #2e199e;
+    background: black; }
     .contact-section .card h4 {
       font-size: 0.8rem;
       font-family: 'Varela Round';
