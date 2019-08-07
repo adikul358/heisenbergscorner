@@ -20,6 +20,5 @@ app.post('/submit-answer/user-data', function(request, response){
 });
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 module.exports = app;
