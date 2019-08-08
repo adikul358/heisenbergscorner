@@ -1,71 +1,71 @@
-#mainNav {
+#mainNav, #mainNavD {
   min-height: 56px;
   background-color: #161616;
 }
-#mainNav .navbar-toggler {
+#mainNav .navbar-toggler, #mainNavD .navbar-toggler {
   font-size: 80%;
   padding: 0.75rem;
   color: #5847B1;
   border: 1px solid #5847B1;
 }
-#mainNav .navbar-toggler:focus {
+#mainNav .navbar-toggler:focus, #mainNavD .navbar-toggler:focus {
   outline: none;
 }
-#mainNav .navbar-brand {
+#mainNav .navbar-brand, #mainNavD .navbar-brand {
   color: rgba(255, 255, 255, 0.5);
   font-weight: 700;
   padding: 0.7rem 0;
 }
-#mainNav .navbar-nav .nav-item:hover {
+#mainNav .navbar-nav .nav-item:hover, #mainNavD .navbar-nav .nav-item:hover {
   color: fade(white, 80%);
   outline: none;
   background-color: transparent;
 }
-#mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
+#mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus, #mainNavD .navbar-nav .nav-item:active, #mainNavD .navbar-nav .nav-item:focus {
   outline: none;
   background-color: transparent;
 }
 @media (min-width: 992px) {
-  #mainNav {
+  #mainNav, #mainNavD {
     padding-top: 0;
     padding-bottom: 0;
     border-bottom: none;
     background-color: transparent;
     transition: background-color 0.3s ease-in-out;
   }
-  #mainNav .navbar-brand {
+  #mainNav .navbar-brand, #mainNavD .navbar-brand {
     padding: 2rem 0;
     color: rgba(255, 255, 255, 0.5);
   }
-  #mainNav .nav-link {
+  #mainNav .nav-link, #mainNavD .nav-link {
     transition: none;
     padding: 2rem 1.5rem;
     color: rgba(255, 255, 255, 0.5);
   }
-  #mainNav .nav-link:hover {
+  #mainNav .nav-link:hover, #mainNavD .nav-link:hover {
     color: rgba(255, 255, 255, 0.75);
   }
-  #mainNav .nav-link:active {
+  #mainNav .nav-link:active, #mainNavD .nav-link:active {
     color: white;
   }
-  #mainNav.navbar-shrink {
+  #mainNav.navbar-shrink, #mainNavD.navbar-shrink {
     background-color: #161616;
   }
-  #mainNav.navbar-shrink .navbar-brand {
+  #mainNav.navbar-shrink .navbar-brand, #mainNavD.navbar-shrink .navbar-brand {
     color: rgba(255, 255, 255, 0.5);
   }
-  #mainNav.navbar-shrink .nav-link {
+  #mainNav.navbar-shrink .nav-link, #mainNavD.navbar-shrink .nav-link {
     color: rgba(255, 255, 255, 0.5);
     padding: 1.5rem 1.5rem 1.25rem;
     border-bottom: 0.25rem solid transparent;
   }
-  #mainNav.navbar-shrink .nav-link:hover {
+  #mainNav.navbar-shrink .nav-link:hover, #mainNavD.navbar-shrink .nav-link:hover {
     color: #5847B1;
   }
-  #mainNav.navbar-shrink .nav-link:active {
+  #mainNav.navbar-shrink .nav-link:active, #mainNavD.navbar-shrink .nav-link:active {
     color: #3d317a;
   }
-  #mainNav.navbar-shrink .nav-link.active {
+  #mainNav.navbar-shrink .nav-link.active, #mainNavD.navbar-shrink .nav-link.active {
     color: #5847B1;
     outline: none;
     border-bottom: 0.25rem solid #5847B1;
@@ -196,11 +196,118 @@
   background: #3c3c3c;
   color: #cecece;
   border-radius: 0;
+  width: 100%;
 }
 .projects-section .question-card input:focus {
   border-color: #2e199e;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(88, 71, 177, 0.5);
+}
+.projects-section .question-card .control {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 5px;
+  padding-top: 3px;
+  cursor: pointer;
+}
+.projects-section .question-card .control input {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+.projects-section .question-card .control_indicator {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background: #e6e6e6;
+  border: 0px solid #000000;
+}
+.projects-section .question-card .control-radio .control_indicator {
+  border-radius: undefined;
+}
+.projects-section .question-card .control:hover input ~ .control_indicator,
+.projects-section .question-card .control input:focus ~ .control_indicator {
+  background: #8875eb;
+}
+.projects-section .question-card .control input:checked ~ .control_indicator {
+  background: #2e199e;
+}
+.projects-section .question-card .control:hover input:not([disabled]):checked ~ .control_indicator,
+.projects-section .question-card .control input:checked:focus ~ .control_indicator {
+  background: #422ead;
+}
+.projects-section .question-card .control input:disabled ~ .control_indicator {
+  background: #e6e6e6;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.projects-section .question-card .control_indicator:after {
+  box-sizing: unset;
+  content: "";
+  position: absolute;
+  display: none;
+}
+.projects-section .question-card .control input:checked ~ .control_indicator:after {
+  display: block;
+}
+.projects-section .question-card .control-checkbox .control_indicator:after {
+  left: 8px;
+  top: 4px;
+  width: 3px;
+  height: 8px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.projects-section .question-card .control-checkbox input:disabled ~ .control_indicator:after {
+  border-color: #7b7b7b;
+}
+.projects-section .question-card .select {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 15px;
+  width: 100%;
+}
+.projects-section .question-card .select select {
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  padding: 0.375rem 0.75rem;
+  outline: 0;
+  border: 1px solid #ced4da;
+  border-radius: 0px;
+  background: #3c3c3c;
+  color: #cecece;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.projects-section .question-card .select select:focus {
+  border-color: #2e199e;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(88, 71, 177, 0.5);
+}
+.projects-section .question-card .select select::-ms-expand {
+  display: none;
+}
+.projects-section .question-card .select select:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.projects-section .question-card .select_arrow {
+  position: absolute;
+  top: 16px;
+  right: 15px;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 8px 5px 0px 5px;
+  border-color: #7b7b7b transparent transparent transparent;
+}
+.projects-section .question-card .select select:disabled ~ .select_arrow {
+  border-top-color: #cccccc;
 }
 @media (max-width: 768px) {
   .projects-section .container {

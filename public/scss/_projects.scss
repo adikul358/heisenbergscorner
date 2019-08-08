@@ -1,43 +1,179 @@
 .projects-section {
   padding: 5rem 0;
+
   .featured-text {
     padding: 2rem;
     color: white;
+
     @media (min-width: 992px) {
       padding: 0 0 0 2rem;
       border-left: 0.5rem solid $primary;
     }
   }
+
   .project-text {
     padding: 3rem;
     font-size: 90%;
     color: fade-out(#fff, 0.4);
+
     hr {
       border-color: $primary;
       border-width: .25rem;
       width: 30%;
     }
+
     @media (min-width: 992px) {
       padding: 4rem;
     }
+
     @media (max-width: 768px) {
       padding: 3rem 1.5rem;
     }
   }
+
   .question-card {
     background: $black;
-    background: linear-gradient(100deg, rgba(22,22,22,1) 0%, rgba(22,22,22,1) 72%, rgba(46,25,158,0.66) 100%);
+    background: linear-gradient(100deg, rgba(22, 22, 22, 1) 0%, rgba(22, 22, 22, 1) 72%, rgba(46, 25, 158, 0.66) 100%);
+
     input {
       background: $input-gray;
       color: #cecece;
       border-radius: 0;
+      width: 100%
     }
+
     input:focus {
       border-color: $primary;
       outline: 0;
       box-shadow: 0 0 0 .2rem fade-out($color: $primary-light, $amount: .5);
     }
+
+    .control {
+      display: block;
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 5px;
+      padding-top: 3px;
+      cursor: pointer;
+    }
+
+    .control input {
+      position: absolute;
+      z-index: -1;
+      opacity: 0;
+    }
+
+    .control_indicator {
+      position: absolute;
+      top: 2px;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background: #e6e6e6;
+      border: 0px solid #000000;
+    }
+
+    .control-radio .control_indicator {
+      border-radius: undefined;
+    }
+
+    .control:hover input~.control_indicator,
+    .control input:focus~.control_indicator {
+      background: #8875eb;
+    }
+
+    .control input:checked~.control_indicator {
+      background: #2e199e;
+    }
+
+    .control:hover input:not([disabled]):checked~.control_indicator,
+    .control input:checked:focus~.control_indicator {
+      background: #422ead;
+    }
+
+    .control input:disabled~.control_indicator {
+      background: #e6e6e6;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .control_indicator:after {
+      box-sizing: unset;
+      content: '';
+      position: absolute;
+      display: none;
+    }
+
+    .control input:checked~.control_indicator:after {
+      display: block;
+    }
+
+    .control-checkbox .control_indicator:after {
+      left: 8px;
+      top: 4px;
+      width: 3px;
+      height: 8px;
+      border: solid #ffffff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    .control-checkbox input:disabled~.control_indicator:after {
+      border-color: #7b7b7b;
+    }
+
+    .select {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 15px;
+      width: 100%;
+    }
+
+    .select select {
+      display: inline-block;
+      width: 100%;
+      cursor: pointer;
+      padding: .375rem .75rem;
+      outline: 0;
+      border: 1px solid #ced4da;
+      border-radius: 0px;
+      background: #3c3c3c;
+      color: #cecece;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+
+    .select select:focus {
+      border-color: $primary;
+      outline: 0;
+      box-shadow: 0 0 0 .2rem fade-out($color: $primary-light, $amount: .5);
+    }
+
+    .select select::-ms-expand {
+      display: none;
+    }
+
+    .select select:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .select_arrow {
+      position: absolute;
+      top: 16px;
+      right: 15px;
+      pointer-events: none;
+      border-style: solid;
+      border-width: 8px 5px 0px 5px;
+      border-color: #7b7b7b transparent transparent transparent;
+    }
+
+    .select select:disabled~.select_arrow {
+      border-top-color: #cccccc;
+    }
   }
+
   @media (max-width: 768px) {
     .container {
       padding-left: 0;
