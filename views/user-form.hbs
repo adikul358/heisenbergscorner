@@ -15,17 +15,17 @@
             <div class="d-flex h-100">
               <div class="project-text w-100 my-auto text-left">
                 <div class="mb-3 form-inline d-flex">
-                  <input type="text" class="form-control flex-fill mr-0 mb-3 mb-sm-0" id="name" name="name"
+                  <input required type="text" class="form-control flex-fill mr-0 mb-3 mb-sm-0" id="name" name="name"
                     placeholder="Full Name">
                 </div>
                 <div class="mb-3 form-inline d-flex">
-                  <input type="text" class="form-control flex-fill mr-0 mb-3 mb-sm-0" id="email" name="email"
+                  <input required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="text" class="form-control flex-fill mr-0 mb-3 mb-sm-0" id="email" name="email"
                     placeholder="Email">
                 </div>
                 <div class="mb-3 form-inline d-flex row">
                   <div class="col-4 col-lg-2">
                      <div class="select">  
-                        <select name='grade' id='grade'>
+                        <select required name='grade' id='grade'>
                             <option value="">Grade</option>
                             <option value="12">12</option>
                             <option value="11">11</option>
@@ -48,7 +48,7 @@
                   </div>
                   <div class="col-8 col-lg-4">
                     <div class="select">
-                        <select name='section' id='section'>
+                        <select required name='section' id='section'>
                             <option value=''>Section</option>
                             <option value='Corbett'>Corbett</option>
                             <option value='Sariska'>Sariska</option>
