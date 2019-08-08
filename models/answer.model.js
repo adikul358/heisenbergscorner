@@ -5,7 +5,8 @@ var answerSchema = new mongoose.Schema({
     name: { type: String },
     email: { type: String },
     grade: { type: String },
-    section: { type: String }
+    section: { type: String },
+    questionID : {type: String}
 });
 
 mongoose.model('Answer', answerSchema);

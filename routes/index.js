@@ -28,6 +28,7 @@ router.get('/', (req, res) => {
         layout: 'home-default',
         questions: docs[0].questions
       });
+      req.session.questionID = docs[0]._id;
     } else {
       console.log('Error in retrieving questions list :' + err);
     }
@@ -51,7 +52,8 @@ router.post('/submit-answer', (req, res) => {
     name: user.name,
     email: user.email,
     grade: grade,
-    section: section
+    section: section,
+    questionID: req.session.questionID
   }
   Answer.create(userResponse, function (err, obj) {
     if (err) {
