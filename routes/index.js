@@ -19,24 +19,6 @@ function getDBDate() {
   return strDateTime;
 };
 
-function submitAnswer(answers, user) {
-  user.grade = user.grade || "NA"
-  user.section = user.section || "NA"
-  Answer.create({
-    answers: answers,
-    name: user.name,
-    email: user.email,
-    grade: user.grade,
-    section: user.section
-  }, function (err, obj) {
-    if (err) {
-      return handleError(err);
-    } else {
-      return 0;
-    }
-  });
-}
-
 router.get('/', (req, res) => {
   Question.find({
     date: getDBDate()
@@ -61,27 +43,37 @@ router.post('/submit-answer/user-data', (req, res) => {
 });
 
 router.post('/submit-answer', (req, res) => {
-  console.log(req.body);
-  status = submitAnswer(req.session.answers, req.body)
-  if (status == 0) {
-    res.render('form-submission', {
-      layout: 'default-nos',
-      status: {
-        message: "Answer Successfully Submitted",
-        image: "check"
-      }
-    });
-  } else {
-    res.render('form-submission', {
-      layout: 'default-nos',
-      status: {
-        message: "Answer Couldn't be Submitted",
-        image: "cross"
-      }
-    });
-    console.log(status)
+  user = req.body
+  grade = user.grade || "NA"
+  section = user.section || "NA"
+  userResponse = {
+    answers: req.session.answers,
+    name: user.name,
+    email: user.email,
+    grade: grade,
+    section: section
   }
-  
+  Answer.create(userResponse, function (err, obj) {
+    if (err) {
+      console.log(err);
+      res.render('form-submission', {
+        layout: 'default-nos',
+        status: {
+          message: "Answer Couldn't be Submitted",
+          image: "cross"
+        }
+      });
+    } else {
+      console.log(obj.id);
+      res.render('form-submission', {
+        layout: 'default-nos',
+        status: {
+          message: "Answer Successfully Submitted",
+          image: "check"
+        }
+      });
+    }
+  })
 });
 
 router.get('/submit-answer/user-data', (req, res) => {

@@ -6,3 +6,4 @@ mongoose.connect('mongodb://localhost:27017/hc-main', { useNewUrlParser: true },
 });
 
 require('./question.model');
+require('./answer.model');
