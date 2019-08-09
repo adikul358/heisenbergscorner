@@ -26,7 +26,8 @@ router.get('/', (req, res) => {
     if (!err) {
       res.render("homepage", {
         layout: 'home-default',
-        questions: docs[0].questions
+        questions: docs[0].questions,
+        title: 'Heisenbergs Corner - Daily Quiz @ Shiv Nadar School Noida'
       });
       req.session.questionID = docs[0]._id;
     } else {
@@ -38,6 +39,7 @@ router.get('/', (req, res) => {
 router.post('/submit-answer/user-data', (req, res) => {
   res.render('user-form', {
     layout: 'default-nos',
+    title: "Enter Your Details - Heisenberg's Corner"
   })
   answers = [req.body.answer1, req.body.answer2]
   req.session.answers = answers
@@ -63,7 +65,8 @@ router.post('/submit-answer', (req, res) => {
         status: {
           message: "Answer Couldn't be Submitted",
           image: "cross"
-        }
+        },
+        title: "Answer Couldn't be Submitted - Heisenberg's Corner"
       });
     } else {
       console.log(obj.id);
@@ -72,7 +75,8 @@ router.post('/submit-answer', (req, res) => {
         status: {
           message: "Answer Successfully Submitted",
           image: "check"
-        }
+        },
+        title: "Answer Successfully Submitted - Heisenberg's Corner"
       });
     }
   })
