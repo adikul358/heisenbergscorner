@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
       res.render("homepage", {
         layout: 'home-default',
         questions: docs[0].questions,
-        title: 'Heisenbergs Corner - Daily Quiz @ Shiv Nadar School Noida'
+        title: 'Heisenbergs Corner - Build Your Curiosity @ Shiv Nadar School Noida'
       });
       req.session.questionID = docs[0]._id;
     } else {
