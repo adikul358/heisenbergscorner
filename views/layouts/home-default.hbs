@@ -14,9 +14,7 @@
 	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-	<link
-		href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 	<link href="/css/grayscale.edit.css" rel="stylesheet">
 
 </head>
@@ -29,6 +27,46 @@
 			{{> home-navigation}}
 		</div>
 	</nav>
+
+	<header class="masthead">
+		<div class="container d-flex h-100 align-items-center">
+			<div class="mx-auto text-center">
+				<h1 class="mx-auto my-0 text-uppercase">Heisenberg's corner</h1>
+				<h2 class="text-white-50 mx-auto mt-2 mb-5">STEAM Quiz Website for Shiv Nadar School Noida</h2>
+				<a href="#about" class="btn btn-primary js-scroll-trigger">Get Started</a>
+			</div>
+		</div>
+	</header>
+
+	<section id="about" class="about-section text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 mx-auto">
+					<h2 class="text-white mb-4">Built to encourage curiosity</h2>
+					<p class="text-white-50">Heisenberg's Corner is a weekly quiz website designed for students of Shiv Nadar
+						School Noida to answer intriguing questions with their knowledge or look up facts and theories to both
+						complete challenges and fill their knowledge cup</p>
+				</div>
+			</div>
+			<img src="/img/brain2.png" class="img-fluid" alt="">
+		</div>
+	</section>
+
+	<section class="projects-section bg-black" style="padding-bottom: 2rem">
+		<div class="container">
+			<div id="theme" class="row align-items-center no-gutters mb-4 mb-lg-5">
+				<div class="col-xl-8 col-lg-7">
+					<img class="img-fluid mb-3 mb-lg-0" src="/img/bg-theme.jpg" alt="">
+				</div>
+				<div class="col-xl-4 col-lg-5">
+					<div class="featured-text text-center">
+						<h4>{{theme.title}}</h4>
+						<p class="text-white-50 mb-0">{{theme.text}}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	{{{body}}}
 

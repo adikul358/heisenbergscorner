@@ -23,14 +23,26 @@ router.get('/', (req, res) => {
   Question.find({
     date: getDBDate()
   }, (err, docs) => {
-    if (!err) {
-      res.render("homepage", {
+    if (!err && docs[0]) {
+      res.render("quiz", {
         layout: 'home-default',
         questions: docs[0].questions,
-        title: 'Heisenbergs Corner - Build Your Curiosity @ Shiv Nadar School Noida'
+        title: 'Heisenbergs Corner - Build Your Curiosity @ Shiv Nadar School Noida',
+        theme: {
+          title: "Chandrayan II",
+          text: "Chandrayaan 2 is an Indian lunar mission that will boldly go where no country has ever gone before — the Moon's south polar region. Through this effort, the aim is to improve our understanding of the Moon — discoveries that will benefit India and humanity as a whole. These insights and experiences aim at a paradigm shift in how lunar expeditions are approached for years to come — propelling further voyages into the farthest frontiers."
+        }
       });
       req.session.questionID = docs[0]._id;
     } else {
+      res.render("quiz-error", {
+        layout: 'home-default',
+        title: 'Heisenbergs Corner - Build Your Curiosity @ Shiv Nadar School Noida',
+        theme: {
+          title: "Chandrayan II",
+          text: "Chandrayaan 2 is an Indian lunar mission that will boldly go where no country has ever gone before — the Moon's south polar region. Through this effort, the aim is to improve our understanding of the Moon — discoveries that will benefit India and humanity as a whole. These insights and experiences aim at a paradigm shift in how lunar expeditions are approached for years to come — propelling further voyages into the farthest frontiers."
+        }
+      });
       console.log('Error in retrieving questions list :' + err);
     }
   });
