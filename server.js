@@ -31,7 +31,8 @@ var sessionOptions = {
         maxAge: 269999999999
     },
     saveUninitialized: true,
-    resave: true
+    resave: true,
+    userValidate: false
 };
 
 if (app.get('env') === 'production') {

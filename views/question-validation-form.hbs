@@ -1,0 +1,31 @@
+<section id="user-form" class="projects-section bg-black pb-0" style='padding-top: 0rem 0'>
+	<div class="container">
+		<div class="d-flex justify-content-center">
+			<hr style="border-color: white; width:8rem; border-width:.3rem; margin:0">
+		</div>
+		<div class="text-center">
+			<h3 class="text-white mt-3 mb-2">Enter Password</h3>
+		</div>
+
+		<form action="/submit-question/" method="POST">
+			<div class="row justify-content-center no-gutters mb-5 mb-lg-0">
+
+				<div class="col-lg-12 mb-2">
+					<div class="question-card text-center project ">
+						<div class="d-flex h-100 justify-content-center">
+							<div class="project-text w-50 my-auto text-left">
+								<div class="mb-3 form-inline d-flex">
+									<input required type="password" class="{{invalid}} form-control flex-fill mr-0 mb-3 mb-sm-0" id="quespass" name="quespass"
+										placeholder="Password">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="w-100 pr-3">
+					<button type="submit" class="float-right mt-5 btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
