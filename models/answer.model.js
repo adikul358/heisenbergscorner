@@ -16,8 +16,8 @@ var answerSchema = new mongoose.Schema({
     section: {
         type: String
     },
-    questionID: {
-        type: String
+    week: {
+        type: Number
     }
 });
 
