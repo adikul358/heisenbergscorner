@@ -10,7 +10,7 @@
       <h3 class="text-white mb-5">Week: {{week}}</h3>
     </div>
 
-    <form action="/submit-answer/user-data/" method="POST">
+    <form id='quizanswers' action="/submit-answer/user-data/" method="POST">
       <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
         <div class="col-lg-12 mb-5">
           <div class="question-card text-center h-100 project">
@@ -20,7 +20,7 @@
                 <p class="mb-0 text-white-50">{{questions.[0]}}</p>
                 <hr class="d-block mb-5 ml-0">
                 <div class="form-inline d-flex">
-                  <input type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="answer1"
+                  <input type="text" class="qans form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="answer1"
                     name="answer1" placeholder="Your Answer">
                 </div>
               </div>
@@ -36,7 +36,7 @@
                 <p class="mb-0 text-white-50">{{questions.[1]}}</p>
                 <hr class="d-block mb-5 ml-0">
                 <div class="form-inline d-flex">
-                  <input type="text" class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="answer2"
+                  <input type="text" class="qans form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="answer2"
                     name="answer2" placeholder="Your Answer">
                 </div>
               </div>

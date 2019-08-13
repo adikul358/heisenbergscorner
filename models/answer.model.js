@@ -18,6 +18,9 @@ var answerSchema = new mongoose.Schema({
     },
     week: {
         type: Number
+    },
+    state: {
+        type: Boolean
     }
 });
 

@@ -69,7 +69,8 @@ router.post('/submit-answer', (req, res) => {
     email: user.email,
     grade: grade,
     section: section,
-    week: getWeekNumber()
+    week: getWeekNumber(),
+    state: null
   }
   Answer.create(userResponse, function (err, obj) {
     if (err) {
