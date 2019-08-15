@@ -197,5 +197,96 @@ router.post('/submit-question', async (req, res) => {
   }
 });
 
+router.get('/check-answers ', (req, res) => {
+  if (!req.session.userValidate) {
+    res.render('question-validation-form', {
+      layout: 'default-nos',
+      title: "Login - Heisenberg's Corner"
+    });
+  } else {
+    Question.findOne().sort('-week').exec((err, doc) => {
+      if (!err && doc.week >= getWeekNumber()) {
+        lastWeek = doc.week + 1;
+      } else if (!err) {
+        lastweek = doc.week
+      } else {
+        console.log(err);
+      }
+      res.render('question-form', {
+        layout: 'default-nos',
+        title: "Submit Questions - Heisenberg's Corner",
+        week: lastWeek
+      });
+    });
+  }
+});
+
+router.post('/check-answers', async (req, res) => {
+  if (req.body.question1) {
+    Question.findOne().sort('-week').exec((err, doc) => {
+      if (err) {
+        console.log(err)
+      } else {
+        if (!err && doc.week >= getWeekNumber()) {
+          lastWeek = doc.week + 1;
+        } else {
+          lastweek = doc.week
+        }
+        questionSubmission = {
+          questions: [req.body.question1, req.body.question2],
+          answers: [req.body.qanswer1, req.body.qanswer2],
+          week: lastWeek
+        }
+        Question.create(questionSubmission, function (err, obj) {
+          if (err) {
+            console.log(err);
+            res.render('form-submission', {
+              layout: 'default-nos',
+              status: {
+                message: "Questions Couldn't be Submitted",
+                image: "cross"
+              },
+              title: "Questions Couldn't be Submitted - Heisenberg's Corner"
+            });
+          } else {
+            console.log(obj.id);
+            res.render('form-submission', {
+              layout: 'default-nos',
+              status: {
+                message: "Questions Successfully Submitted",
+                image: "check"
+              },
+              title: "Questions Successfully Submitted - Heisenberg's Corner"
+            });
+          }
+        });
+      }
+    });
+  } else {
+    if (req.body.quespass != 'snsnsteam.edu') {
+      res.render('question-validation-form', {
+        layout: 'default-nos',
+        title: "Login - Heisenberg's Corner",
+        invalid: "invalid"
+      });
+    } else {
+      Question.findOne().sort('-week').exec((err, doc) => {
+        if (!err && doc.week >= getWeekNumber()) {
+          lastWeek = doc.week + 1;
+        } else if (!err) {
+          lastweek = doc.week
+        } else {
+          console.log(err);
+        }
+        res.render('question-form', {
+          layout: 'default-nos',
+          title: "Submit Questions - Heisenberg's Corner",
+          week: lastWeek
+        });
+        req.session.userValidate = true
+      });
+    }
+  }
+});
 
 module.exports = router;
