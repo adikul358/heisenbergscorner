@@ -107,9 +107,10 @@ router.get('/submit-answer', (req, res) => {
 
 router.get('/submit-question', (req, res) => {
   if (!req.session.userValidate) {
-    res.render('question-validation-form', {
+    res.render('validation-form', {
       layout: 'default-nos',
-      title: "Login - Heisenberg's Corner"
+      title: "Login - Heisenberg's Corner",
+      link: "submit-question"
     });
   } else {
     Question.findOne().sort('-week').exec((err, doc) => {
@@ -172,10 +173,11 @@ router.post('/submit-question', async (req, res) => {
     });
   } else {
     if (req.body.quespass != 'snsnsteam.edu') {
-      res.render('question-validation-form', {
+      res.render('validation-form', {
         layout: 'default-nos',
         title: "Login - Heisenberg's Corner",
-        invalid: "invalid"
+        invalid: "invalid",
+        link: "submit-question"
       });
     } else {
       Question.findOne().sort('-week').exec((err, doc) => {
@@ -197,11 +199,12 @@ router.post('/submit-question', async (req, res) => {
   }
 });
 
-router.get('/check-answers ', (req, res) => {
+router.get('/check-answers', (req, res) => {
   if (!req.session.userValidate) {
-    res.render('question-validation-form', {
+    res.render('validation-form', {
       layout: 'default-nos',
-      title: "Login - Heisenberg's Corner"
+      title: "Login - Heisenberg's Corner",
+      link: "check-answers"
     });
   } else {
     Question.findOne().sort('-week').exec((err, doc) => {
@@ -212,9 +215,9 @@ router.get('/check-answers ', (req, res) => {
       } else {
         console.log(err);
       }
-      res.render('question-form', {
+      res.render('answers-dashboard', {
         layout: 'default-nos',
-        title: "Submit Questions - Heisenberg's Corner",
+        title: "Answers Dashboard - Heisenberg's Corner",
         week: lastWeek
       });
     });
@@ -264,10 +267,11 @@ router.post('/check-answers', async (req, res) => {
     });
   } else {
     if (req.body.quespass != 'snsnsteam.edu') {
-      res.render('question-validation-form', {
+      res.render('validation-form', {
         layout: 'default-nos',
         title: "Login - Heisenberg's Corner",
-        invalid: "invalid"
+        invalid: "invalid",
+        link: "check-answers"
       });
     } else {
       Question.findOne().sort('-week').exec((err, doc) => {
@@ -278,9 +282,9 @@ router.post('/check-answers', async (req, res) => {
         } else {
           console.log(err);
         }
-        res.render('question-form', {
+        res.render('answers-dashboard', {
           layout: 'default-nos',
-          title: "Submit Questions - Heisenberg's Corner",
+          title: "Answers Dashboard - Heisenberg's Corner",
           week: lastWeek
         });
         req.session.userValidate = true

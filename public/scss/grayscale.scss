@@ -42,3 +42,7 @@ footer {
 body {
   background: $black;
 }
+
+.table-dark thead tr {
+  background: fade-out($color: white, $amount: 0.8)
+}
