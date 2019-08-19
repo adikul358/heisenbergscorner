@@ -117,7 +117,7 @@ router.get('/submit-question', (req, res) => {
       if (!err && doc.week >= getWeekNumber()) {
         lastWeek = doc.week + 1;
       } else if (!err) {
-        lastweek = doc.week
+        lastWeek = getWeekNumber();
       } else {
         console.log(err);
       }
@@ -139,7 +139,7 @@ router.post('/submit-question', async (req, res) => {
         if (!err && doc.week >= getWeekNumber()) {
           lastWeek = doc.week + 1;
         } else {
-          lastweek = doc.week
+          lastWeek = getWeekNumber();
         }
         questionSubmission = {
           questions: [req.body.question1, req.body.question2],
