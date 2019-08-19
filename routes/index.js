@@ -184,7 +184,7 @@ router.post('/submit-question', async (req, res) => {
         if (!err && doc.week >= getWeekNumber()) {
           lastWeek = doc.week + 1;
         } else if (!err) {
-          lastweek = doc.week
+          lastWeek = getWeekNumber()
         } else {
           console.log(err);
         }
@@ -211,7 +211,7 @@ router.get('/check-answers', (req, res) => {
       if (!err && doc.week >= getWeekNumber()) {
         lastWeek = doc.week + 1;
       } else if (!err) {
-        lastweek = doc.week
+        lastWeek = doc.week
       } else {
         console.log(err);
       }
@@ -233,7 +233,7 @@ router.post('/check-answers', async (req, res) => {
         if (!err && doc.week >= getWeekNumber()) {
           lastWeek = doc.week + 1;
         } else {
-          lastweek = doc.week
+          lastWeek = doc.week
         }
         questionSubmission = {
           questions: [req.body.question1, req.body.question2],
@@ -278,7 +278,7 @@ router.post('/check-answers', async (req, res) => {
         if (!err && doc.week >= getWeekNumber()) {
           lastWeek = doc.week + 1;
         } else if (!err) {
-          lastweek = doc.week
+          lastWeek = doc.week
         } else {
           console.log(err);
         }
