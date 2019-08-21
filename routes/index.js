@@ -291,7 +291,7 @@ router.post('/check-answers', async (req, res) => {
         res.render('answers-dashboard', {
           layout: 'default-nos',
           title: "Answers Dashboard - Heisenberg's Corner",
-          week: lastWeek
+          answers: doc
         });
         req.session.userValidate = true
       });
