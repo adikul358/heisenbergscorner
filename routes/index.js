@@ -17,6 +17,12 @@ function getWeekNumber() {
   return 1 + Math.ceil((firstThursday - tdt) / 604800000);
 }
 
+const groupBy = (key, array) =>
+  array.reduce((objectsByKeyValue, obj) => {
+    const value = obj[key];
+    objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
+    return objectsByKeyValue;
+  }, {});
   
 router.get('/', (req, res) => {
   Question.find({
@@ -208,24 +214,12 @@ router.get('/check-answers', (req, res) => {
     });
   } else {
     Answer.find({state:null}).sort('-week').exec((err, doc) => {
-      // doca = [[]]
-      // week = doc[0].week
-      // weekIndex = 0
-      // doc.forEach((val, i) => {
-      //   if (val.week == week) {
-      //     doca[weekIndex].push(val)
-      //   } else {
-      //     weekIndex++;
-      //     doca[weekIndex] = []
-      //     doca[weekIndex].push(val)
-      //   }
-      // });
-      // console.log(doca)
       res.render('answers-dashboard', {
         layout: 'default-nos',
         title: "Answers Dashboard - Heisenberg's Corner",
-        answers: doc
+        data: groupBy('week', doc)
       });
+      req.session.userValidate = true
     });
   }
 });
@@ -280,18 +274,12 @@ router.post('/check-answers', async (req, res) => {
         link: "check-answers"
       });
     } else {
-      Question.findOne().sort('-week').exec((err, doc) => {
-        if (!err && doc.week >= getWeekNumber()) {
-          lastWeek = doc.week + 1;
-        } else if (!err) {
-          lastWeek = doc.week
-        } else {
-          console.log(err);
-        }
+      Answer.find({state:null}).sort('-week').exec((err, doc) => {
+        
         res.render('answers-dashboard', {
           layout: 'default-nos',
           title: "Answers Dashboard - Heisenberg's Corner",
-          answers: doc
+          data: groupBy('week', doc)
         });
         req.session.userValidate = true
       });

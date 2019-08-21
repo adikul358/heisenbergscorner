@@ -37,8 +37,10 @@
 	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 	<script src="/js/grayscale.min.js"></script>
+	<script src="/js/jquery.session.js"></script>
 
 	<script>
+		$.session.set('changes', [])
 		offsetHeight = document.getElementById('mainNavD').offsetHeight;
 		paddingTop = parseInt($('#user-form').css("padding-top").split("px")[0]);
 		$("#user-form").css("padding-top", 20 + offsetHeight);
@@ -59,11 +61,20 @@
 				if ($(this).hasClass('bg-success')) {
 					$(this).removeClass('bg-success')
 					$(this).addClass('bg-danger')
+					changesMain = $.session.get('changes');
+					changesMain[$(this).attr('id')] = false
+					$.session.set('changes', changesMain)
 				} else {
 					$(this).removeClass('bg-danger')
 					$(this).addClass('bg-success')
+					changesMain = $.session.get('changes');
+					changesMain[$(this).attr('id')] = true
+					$.session.set('changes', changesMain)
 				}
-			}); 
+			});
+			$("button").click(() => {
+				alert($.session.get('changes'))
+			})
 		});
 	</script>
 
