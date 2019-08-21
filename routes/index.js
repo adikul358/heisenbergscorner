@@ -206,7 +206,7 @@ router.post('/submit-question', async (req, res) => {
 });
 
 router.get('/check-answers', (req, res) => {
-  if (!req.session.userValidate) {
+  if (!req.session.userValidate && process.env.NODE_ENV == 'production') {
     res.render('validation-form', {
       layout: 'default-nos',
       title: "Login - Heisenberg's Corner",
@@ -217,7 +217,8 @@ router.get('/check-answers', (req, res) => {
       res.render('answers-dashboard', {
         layout: 'default-nos',
         title: "Answers Dashboard - Heisenberg's Corner",
-        data: groupBy('week', doc)
+        data: groupBy('week', doc),
+        scripts: ['answerCheck']
       });
       req.session.userValidate = true
     });
@@ -279,7 +280,8 @@ router.post('/check-answers', async (req, res) => {
         res.render('answers-dashboard', {
           layout: 'default-nos',
           title: "Answers Dashboard - Heisenberg's Corner",
-          data: groupBy('week', doc)
+          data: groupBy('week', doc),
+          scripts: ['answerCheck']
         });
         req.session.userValidate = true
       });

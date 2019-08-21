@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "start": "node server.js",
+    "start": "NODE_ENV=production node server.js",
     "devStart": "nodemon server.js",
     "sassUpdate": "sass public/scss/grayscale.scss public/css/grayscale.edit.css"
   },
