@@ -59,7 +59,8 @@ router.get('/', (req, res) => {
 router.post('/submit-answer/user-data', (req, res) => {
   res.render('user-form', {
     layout: 'default-nos',
-    title: "Enter Your Details - Heisenberg's Corner"
+    title: "Enter Your Details - Heisenberg's Corner",
+    scripts: ["notAStudent"]
   })
   answers = [req.body.answer1, req.body.answer2]
   req.session.answers = answers
