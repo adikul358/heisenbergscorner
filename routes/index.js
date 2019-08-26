@@ -35,7 +35,9 @@ function getDaysValues(doc) {
       // day = globalWeekDays[day.getDay()];
       weekAnswersValue[day.getDay()]++;
     }
-    dateValues[currWeek] = weekAnswersValue
+    sunElement = weekAnswersValue.shift();
+    weekAnswersValue.push(sunElement)
+    dateValues[currWeek] = weekAnswersValue;
  }
  return dateValues
 }
@@ -233,13 +235,20 @@ router.get('/check-answers', (req, res) => {
     Answer.find({
       state: null
     }).sort('-week').exec((err, doc) => {
-      res.render('answers-dashboard', {
-        layout: 'default-nos',
-        title: "Answers Dashboard - Heisenberg's Corner",
-        data: groupBy('week', doc),
-        scripts: ['/js/answerCheck.js']
+      Question.find({}).select('week answers').exec((err2, doc2) => {
+        ansData = groupBy('week', doc);
+        quesData = groupBy('week', doc2);
+        for (var i in ansData) {
+          ansData[i]['qanswers'] = quesData[i][0]['answers'];
+        }
+        res.render('answers-dashboard', {
+          layout: 'default-nos-admin',
+          title: "Answers Dashboard - Heisenberg's Corner",
+          data: ansData,
+          scripts: ['/js/answerCheck.js']
+        });
+        req.session.userValidate = true
       });
-      req.session.userValidate = true
     });
   }
 });
@@ -256,14 +265,20 @@ router.post('/check-answers', async (req, res) => {
     Answer.find({
       state: null
     }).sort('-week').exec((err, doc) => {
-
-      res.render('answers-dashboard', {
-        layout: 'default-nos',
-        title: "Answers Dashboard - Heisenberg's Corner",
-        data: groupBy('week', doc),
-        scripts: ['/js/answerCheck.js']
+      Question.find({}).select('week answers').exec((err2, doc2) => {
+        ansData = groupBy('week', doc);
+        quesData = groupBy('week', doc2);
+        for (var i in ansData) {
+          ansData[i]['qanswers'] = quesData[i][0]['answers'];
+        }
+        res.render('answers-dashboard', {
+          layout: 'default-nos-admin',
+          title: "Answers Dashboard - Heisenberg's Corner",
+          data: ansData,
+          scripts: ['/js/answerCheck.js']
+        });
+        req.session.userValidate = true
       });
-      req.session.userValidate = true
     });
   }
 });
@@ -283,8 +298,29 @@ router.get('/weekly-analysis', (req, res) => {
   } else {
     Answer.find().sort('-week').exec((err, doc) => {
       res.render('weekly-analysis', {
-        layout: 'default-nos',
-        title: "Answers Dashboard - Heisenberg's Corner",
+        layout: 'default-nos-admin',
+        title: "Weekly Analysis - Heisenberg's Corner",
+        data: groupBy('week', doc),
+        scripts: ['https://cdn.jsdelivr.net/npm/chart.js@2.8.0', '/js/weeklyCharts.js']
+      });
+      req.session.userValidate = true
+    });
+  }
+});
+
+router.post('/weekly-analysis', async (req, res) => {
+  if (req.body.quespass != 'snsnsteam.edu') {
+    res.render('validation-form', {
+      layout: 'default-nos',
+      title: "Login - Heisenberg's Corner",
+      invalid: "invalid",
+      link: "weekly-analysis"
+    });
+  } else {
+    Answer.find().sort('-week').exec((err, doc) => {
+      res.render('weekly-analysis', {
+        layout: 'default-nos-admin',
+        title: "Weekly Analysis - Heisenberg's Corner",
         data: groupBy('week', doc),
         scripts: ['https://cdn.jsdelivr.net/npm/chart.js@2.8.0', '/js/weeklyCharts.js']
       });
@@ -301,8 +337,8 @@ router.get('/weekly-analysis-data', (req, res) => {
       if (err) {
         res.send(err);
       } else {
-        res.send(doc);
-        // res.send(getDaysValues(groupBy('week', doc)));
+        // res.send(doc);
+        res.send(getDaysValues(groupBy('week', doc)));
       }
     });
   }
