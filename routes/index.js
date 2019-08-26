@@ -24,6 +24,22 @@ const groupBy = (key, array) =>
     return objectsByKeyValue;
   }, {});
 
+function getDaysValues(doc) {
+  dateValues = {}
+  for (var currWeek in doc) {
+    weekAnswers = doc[currWeek];
+    weekAnswersValue = [0,0,0,0,0,0,0];
+    for (var currAns in weekAnswers) {
+      timestamp = weekAnswers[currAns]['_id'].toString().substring(0,8);
+      day = new Date( parseInt( timestamp, 16 ) * 1000 )
+      // day = globalWeekDays[day.getDay()];
+      weekAnswersValue[day.getDay()]++;
+    }
+    dateValues[currWeek] = weekAnswersValue
+ }
+ return dateValues
+}
+
 router.get('/', (req, res) => {
   Question.find({
     week: getWeekNumber()
@@ -60,7 +76,7 @@ router.post('/submit-answer/user-data', (req, res) => {
   res.render('user-form', {
     layout: 'default-nos',
     title: "Enter Your Details - Heisenberg's Corner",
-    scripts: ["notAStudent"]
+    scripts: ["/js/notAStudent.js"]
   })
   answers = [req.body.answer1, req.body.answer2]
   req.session.answers = answers
@@ -221,7 +237,7 @@ router.get('/check-answers', (req, res) => {
         layout: 'default-nos',
         title: "Answers Dashboard - Heisenberg's Corner",
         data: groupBy('week', doc),
-        scripts: ['answerCheck']
+        scripts: ['/js/answerCheck.js']
       });
       req.session.userValidate = true
     });
@@ -229,68 +245,26 @@ router.get('/check-answers', (req, res) => {
 });
 
 router.post('/check-answers', async (req, res) => {
-  if (req.body.question1) {
-    Question.findOne().sort('-week').exec((err, doc) => {
-      if (err) {
-        console.log(err)
-      } else {
-        if (!err && doc.week >= getWeekNumber()) {
-          lastWeek = doc.week + 1;
-        } else {
-          lastWeek = doc.week
-        }
-        questionSubmission = {
-          questions: [req.body.question1, req.body.question2],
-          answers: [req.body.qanswer1, req.body.qanswer2],
-          week: lastWeek
-        }
-        Question.create(questionSubmission, function (err, obj) {
-          if (err) {
-            console.log(err);
-            res.render('form-submission', {
-              layout: 'default-nos',
-              status: {
-                message: "Questions Couldn't be Submitted",
-                image: "cross"
-              },
-              title: "Questions Couldn't be Submitted - Heisenberg's Corner"
-            });
-          } else {
-            console.log(obj.id);
-            res.render('form-submission', {
-              layout: 'default-nos',
-              status: {
-                message: "Questions Successfully Submitted",
-                image: "check"
-              },
-              title: "Questions Successfully Submitted - Heisenberg's Corner"
-            });
-          }
-        });
-      }
+  if (req.body.quespass != 'snsnsteam.edu') {
+    res.render('validation-form', {
+      layout: 'default-nos',
+      title: "Login - Heisenberg's Corner",
+      invalid: "invalid",
+      link: "check-answers"
     });
   } else {
-    if (req.body.quespass != 'snsnsteam.edu') {
-      res.render('validation-form', {
-        layout: 'default-nos',
-        title: "Login - Heisenberg's Corner",
-        invalid: "invalid",
-        link: "check-answers"
-      });
-    } else {
-      Answer.find({
-        state: null
-      }).sort('-week').exec((err, doc) => {
+    Answer.find({
+      state: null
+    }).sort('-week').exec((err, doc) => {
 
-        res.render('answers-dashboard', {
-          layout: 'default-nos',
-          title: "Answers Dashboard - Heisenberg's Corner",
-          data: groupBy('week', doc),
-          scripts: ['answerCheck']
-        });
-        req.session.userValidate = true
+      res.render('answers-dashboard', {
+        layout: 'default-nos',
+        title: "Answers Dashboard - Heisenberg's Corner",
+        data: groupBy('week', doc),
+        scripts: ['/js/answerCheck.js']
       });
-    }
+      req.session.userValidate = true
+    });
   }
 });
 
@@ -299,5 +273,39 @@ router.post('/check-answers/changes', async (req, res) => {
 });
 
 
+router.get('/weekly-analysis', (req, res) => {
+  if (!req.session.userValidate && process.env.NODE_ENV == 'production') {
+    res.render('validation-form', {
+      layout: 'default-nos',
+      title: "Login - Heisenberg's Corner",
+      link: "check-answers"
+    });
+  } else {
+    Answer.find().sort('-week').exec((err, doc) => {
+      res.render('weekly-analysis', {
+        layout: 'default-nos',
+        title: "Answers Dashboard - Heisenberg's Corner",
+        data: groupBy('week', doc),
+        scripts: ['https://cdn.jsdelivr.net/npm/chart.js@2.8.0', '/js/weeklyCharts.js']
+      });
+      req.session.userValidate = true
+    });
+  }
+});
+
+router.get('/weekly-analysis-data', (req, res) => {
+  if (!req.session.userValidate && process.env.NODE_ENV == 'production') {
+    res.send({error: "User not validated"});
+  } else {
+    Answer.find().sort('-week').exec((err, doc) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(doc);
+        // res.send(getDaysValues(groupBy('week', doc)));
+      }
+    });
+  }
+});
 
 module.exports = router;
