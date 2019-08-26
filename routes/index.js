@@ -23,7 +23,7 @@ const groupBy = (key, array) =>
     objectsByKeyValue[value] = (objectsByKeyValue[value] || []).concat(obj);
     return objectsByKeyValue;
   }, {});
-  
+
 router.get('/', (req, res) => {
   Question.find({
     week: getWeekNumber()
@@ -213,7 +213,9 @@ router.get('/check-answers', (req, res) => {
       link: "check-answers"
     });
   } else {
-    Answer.find({state:null}).sort('-week').exec((err, doc) => {
+    Answer.find({
+      state: null
+    }).sort('-week').exec((err, doc) => {
       res.render('answers-dashboard', {
         layout: 'default-nos',
         title: "Answers Dashboard - Heisenberg's Corner",
@@ -275,8 +277,10 @@ router.post('/check-answers', async (req, res) => {
         link: "check-answers"
       });
     } else {
-      Answer.find({state:null}).sort('-week').exec((err, doc) => {
-        
+      Answer.find({
+        state: null
+      }).sort('-week').exec((err, doc) => {
+
         res.render('answers-dashboard', {
           layout: 'default-nos',
           title: "Answers Dashboard - Heisenberg's Corner",
@@ -288,5 +292,11 @@ router.post('/check-answers', async (req, res) => {
     }
   }
 });
+
+router.post('/check-answers/changes', async (req, res) => {
+  res.send(req.body.changes);
+});
+
+
 
 module.exports = router;
