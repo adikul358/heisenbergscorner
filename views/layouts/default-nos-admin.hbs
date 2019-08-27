@@ -41,7 +41,6 @@
 	{{/each}}
 
 	<script>
-		$.session.set('changes', [])
 		offsetHeight = document.getElementById('mainNavD').offsetHeight;
 		$("thead.sticky-top").css('top', offsetHeight);
 		paddingTop = parseInt($('#user-form').css("padding-top").split("px")[0]);
@@ -49,7 +48,9 @@
 		console.log(paddingTop)
 		console.log(offsetHeight)
 		console.log(paddingTop + offsetHeight)
-
+		var list = $('#indie-weeks');
+		var listItems = list.children('div');
+		list.append(listItems.get().reverse());
 	</script>
 
 </body>

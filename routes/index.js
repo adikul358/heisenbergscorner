@@ -296,7 +296,7 @@ router.get('/weekly-analysis', (req, res) => {
       link: "check-answers"
     });
   } else {
-    Answer.find().sort('-week').exec((err, doc) => {
+    Answer.find().exec((err, doc) => {
       res.render('weekly-analysis', {
         layout: 'default-nos-admin',
         title: "Weekly Analysis - Heisenberg's Corner",
@@ -317,7 +317,7 @@ router.post('/weekly-analysis', async (req, res) => {
       link: "weekly-analysis"
     });
   } else {
-    Answer.find().sort('-week').exec((err, doc) => {
+    Answer.find().exec((err, doc) => {
       res.render('weekly-analysis', {
         layout: 'default-nos-admin',
         title: "Weekly Analysis - Heisenberg's Corner",
