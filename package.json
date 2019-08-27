@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=production node server.js",
+    "start": "set NODE_ENV=production && node server.js",
     "devStart": "nodemon server.js",
     "sassUpdate": "sass public/scss/grayscale.scss public/css/grayscale.edit.css"
   },
@@ -15,7 +15,6 @@
     "express": "~4.16.1",
     "express-handlebars": "^3.1.0",
     "express-session": "^1.16.2",
-    "jquery.session": "^1.0.0",
     "mongoose": "^5.6.8",
     "morgan": "~1.9.1"
   },
