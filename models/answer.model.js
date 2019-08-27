@@ -20,7 +20,7 @@ var answerSchema = new mongoose.Schema({
         type: Number
     },
     state: {
-        type: Boolean
+        type: Array
     }
 });
 
