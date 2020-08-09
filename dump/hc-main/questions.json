@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5d50dc01aa028b41fcb6ea50"},"questions":["What is the mass of Chandrayan 2?","What is the mission of Chandrayan 2?"],"answers":["2379 kg dry mass","Soft Landing on moon surface"],"week":{"$numberInt":"33"},"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d5ac7f14a567035df150023"},"questions":["How many times have artificial probes landed on the moon?"," What is the record of the fastest mission to the moon?"],"answers":["idk","idk"],"week":{"$numberInt":"34"},"__v":{"$numberInt":"0"}}
